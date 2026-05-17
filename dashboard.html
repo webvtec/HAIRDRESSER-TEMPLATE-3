@@ -322,6 +322,22 @@
       color: #fff;
     }
 
+    .gallery-item-category {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(107,30,52,0.95), rgba(107,30,52,0.7));
+      color: #fff;
+      padding: 10px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-family: 'Tenor Sans', sans-serif;
+    }
+
     /* Reservations */
     .reservation-card {
       border: 1px solid var(--line);
@@ -678,12 +694,14 @@
         <div style="margin-bottom:20px;">
           <label style="display:block; margin-bottom:8px; font-weight:700; color:var(--burgundy); font-size:13px;">Category for Upload:</label>
           <select id="categoryInput" style="margin-bottom:0;">
-            <option value="Hair">Hair</option>
-            <option value="Lashes">Lashes</option>
             <option value="Braids">Braids</option>
+            <option value="Twists">Twists</option>
+            <option value="Locs">Locs</option>
+            <option value="Cornrows">Cornrows</option>
             <option value="Weaves">Weaves</option>
-            <option value="Natural">Natural</option>
-            <option value="Beauty">Beauty</option>
+            <option value="Quick Weave">Quick Weave</option>
+            <option value="Ponytails">Ponytails</option>
+            <option value="Natural Hair">Natural Hair</option>
             <option value="Other">Other</option>
           </select>
         </div>
@@ -907,6 +925,7 @@
           div.className = 'gallery-item';
           div.innerHTML = `
             <img src="${data.url}" alt="${data.category || 'Gallery'}" loading="lazy">
+            <div class="gallery-item-category">${data.category || 'Uncategorized'}</div>
             <div class="gallery-item-overlay">
               <button onclick="deleteImage('${doc.id}', '${data.url}')">Delete</button>
             </div>
