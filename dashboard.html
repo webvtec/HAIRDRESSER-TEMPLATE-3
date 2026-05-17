@@ -322,6 +322,31 @@
       color: #fff;
     }
 
+    .gallery-item-drag-handle {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(107,30,52,0.9);
+      color: var(--gold);
+      padding: 6px 10px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: grab;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      z-index: 1;
+      user-select: none;
+    }
+
+    .gallery-item[draggable="true"] {
+      cursor: move;
+    }
+
+    .gallery-item[draggable="true"]:active {
+      cursor: grabbing;
+    }
+
     .gallery-category-header {
       margin: 32px 0 16px;
       padding: 12px 16px;
@@ -717,7 +742,7 @@
         <div id="uploadProgress" style="display:none; text-align:center; color:var(--burgundy); font-weight:700; margin-bottom:20px;"></div>
 
         <!-- Gallery Grid -->
-        <div id="galleryContainer" class="gallery-grid"></div>
+        <div id="galleryContainer"></div>
       </div>
     </div>
 
@@ -949,12 +974,16 @@
           // Photos grid for this category
           const categoryGrid = document.createElement('div');
           categoryGrid.className = 'gallery-grid';
+          categoryGrid.dataset.category = category;
           
           categorizedPhotos[category].forEach(photo => {
             const div = document.createElement('div');
             div.className = 'gallery-item';
+            div.draggable = true;
+            div.dataset.photoId = photo.id;
             div.innerHTML = `
               <img src="${photo.url}" alt="${category}" loading="lazy">
+              <div class="gallery-item-drag-handle">⠿</div>
               <div class="gallery-item-overlay">
                 <button onclick="deleteImage('${photo.id}', '${photo.url}')">Delete</button>
               </div>
@@ -963,8 +992,68 @@
           });
           
           container.appendChild(categoryGrid);
+          enableDragSort(categoryGrid);
         });
       });
+    }
+
+    function enableDragSort(grid) {
+      let draggedItem = null;
+
+      grid.addEventListener('dragstart', (e) => {
+        draggedItem = e.target.closest('.gallery-item');
+        if (draggedItem) {
+          draggedItem.style.opacity = '0.5';
+          e.dataTransfer.effectAllowed = 'move';
+        }
+      });
+
+      grid.addEventListener('dragend', (e) => {
+        if (draggedItem) {
+          draggedItem.style.opacity = '1';
+          // Save new order to database
+          const items = [...grid.querySelectorAll('.gallery-item')];
+          const batch = db.batch();
+          
+          items.forEach((item, index) => {
+            const photoId = item.dataset.photoId;
+            if (photoId) {
+              batch.update(db.collection('gallery').doc(photoId), { sortOrder: index });
+            }
+          });
+          
+          batch.commit()
+            .then(() => console.log('Order saved'))
+            .catch(err => console.error('Error saving order:', err));
+          
+          draggedItem = null;
+        }
+      });
+
+      grid.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        const afterElement = getDragAfterElement(grid, e.clientY);
+        if (afterElement == null) {
+          grid.appendChild(draggedItem);
+        } else {
+          grid.insertBefore(draggedItem, afterElement);
+        }
+      });
+    }
+
+    function getDragAfterElement(container, y) {
+      const draggableElements = [...container.querySelectorAll('.gallery-item:not(.dragging)')];
+      
+      return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        
+        if (offset < 0 && offset > closest.offset) {
+          return { offset: offset, element: child };
+        } else {
+          return closest;
+        }
+      }, { offset: Number.NEGATIVE_INFINITY }).element;
     }
 
     async function uploadImages() {
