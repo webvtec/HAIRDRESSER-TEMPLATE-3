@@ -322,20 +322,28 @@
       color: #fff;
     }
 
-    .gallery-item-category {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(107,30,52,0.95), rgba(107,30,52,0.7));
-      color: #fff;
-      padding: 10px 12px;
-      font-size: 11px;
+    .gallery-category-header {
+      margin: 32px 0 16px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, var(--burgundy), var(--burgundy2));
+      border-radius: 10px;
+      border-left: 4px solid var(--gold);
+    }
+
+    .gallery-category-header h3 {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
       font-weight: 700;
-      text-align: center;
-      letter-spacing: 1.5px;
+      font-style: italic;
+      color: #fff;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      font-family: 'Tenor Sans', sans-serif;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+    }
+
+    .gallery-category-header:first-child {
+      margin-top: 0;
     }
 
     /* Reservations */
@@ -919,18 +927,42 @@
           return;
         }
 
+        // Group photos by category
+        const categorizedPhotos = {};
         snapshot.forEach(doc => {
           const data = doc.data();
-          const div = document.createElement('div');
-          div.className = 'gallery-item';
-          div.innerHTML = `
-            <img src="${data.url}" alt="${data.category || 'Gallery'}" loading="lazy">
-            <div class="gallery-item-category">${data.category || 'Uncategorized'}</div>
-            <div class="gallery-item-overlay">
-              <button onclick="deleteImage('${doc.id}', '${data.url}')">Delete</button>
-            </div>
-          `;
-          container.appendChild(div);
+          const category = data.category || 'Uncategorized';
+          if (!categorizedPhotos[category]) {
+            categorizedPhotos[category] = [];
+          }
+          categorizedPhotos[category].push({ id: doc.id, ...data });
+        });
+
+        // Render each category section
+        Object.keys(categorizedPhotos).sort().forEach(category => {
+          // Category header
+          const categoryHeader = document.createElement('div');
+          categoryHeader.className = 'gallery-category-header';
+          categoryHeader.innerHTML = `<h3>${category}</h3>`;
+          container.appendChild(categoryHeader);
+
+          // Photos grid for this category
+          const categoryGrid = document.createElement('div');
+          categoryGrid.className = 'gallery-grid';
+          
+          categorizedPhotos[category].forEach(photo => {
+            const div = document.createElement('div');
+            div.className = 'gallery-item';
+            div.innerHTML = `
+              <img src="${photo.url}" alt="${category}" loading="lazy">
+              <div class="gallery-item-overlay">
+                <button onclick="deleteImage('${photo.id}', '${photo.url}')">Delete</button>
+              </div>
+            `;
+            categoryGrid.appendChild(div);
+          });
+          
+          container.appendChild(categoryGrid);
         });
       });
     }
