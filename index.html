@@ -1568,7 +1568,7 @@ function loadGallery(containerId) {
     container.innerHTML = `
       <div class="gallery-grid" id="${safeId}"></div>
       <div class="book-look-row">
-        <button class="btn-book-look" onclick="switchTab('viewBook')">Book This Look →</button>
+        <button class="btn-book-look" onclick="switchTab('viewBook')">Book Appointment →</button>
       </div>`;
     const gc = document.getElementById(safeId);
     urls.forEach(url => { gc.innerHTML += `<div><img src="${url}" alt="${currentGalleryFilter}" loading="lazy"></div>`; });
