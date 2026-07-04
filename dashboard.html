@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NATASHA BEAUTY — Admin Dashboard</title>
+  <title>Unique Creationz — Admin Dashboard</title>
 
   <!-- Firebase Scripts -->
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
@@ -14,26 +14,26 @@
 
   <style>
     :root {
-      --cream:       #FAF6F0;
-      --cream2:      #F3EDE3;
-      --cream3:      #EDE4D6;
-      --parchment:   #E8DDD0;
-      --burgundy:    #6B1E34;
-      --burgundy2:   #8A2542;
-      --burgundy3:   #4D1526;
-      --rose:        #C4778A;
-      --rose2:       #D4939F;
-      --blush:       #F0D6DC;
-      --gold:        #B8892A;
-      --gold2:       #D4A93E;
-      --goldfaint:   #F5E8CC;
-      --ink:         #1A1018;
-      --ink2:        #2D1E28;
-      --muted:       #7A6570;
-      --mutedlight:  #9E8A94;
-      --line:        rgba(107,30,52,0.12);
-      --linefaint:   rgba(107,30,52,0.07);
-      --shadow:      rgba(107,30,52,0.08);
+      --cream:       #0B0F0F;
+      --cream2:      #141C1B;
+      --cream3:      #1A2422;
+      --parchment:   #24322F;
+      --burgundy:    #17BFAE;
+      --burgundy2:   #2FE0CB;
+      --burgundy3:   #0A5F57;
+      --rose:        #D4AF37;
+      --rose2:       #E8C766;
+      --blush:       #241D0E;
+      --gold:        #D9A62E;
+      --gold2:       #EFC65A;
+      --goldfaint:   #2A2110;
+      --ink:         #F3F7F6;
+      --ink2:        #C9D6D3;
+      --muted:       #9FB7B3;
+      --mutedlight:  #6E8481;
+      --line:        rgba(23,191,174,0.18);
+      --linefaint:   rgba(23,191,174,0.09);
+      --shadow:      rgba(0,0,0,0.45);
       --white:       #ffffff;
     }
 
@@ -45,8 +45,8 @@
       margin: 0; padding: 0;
       color: var(--ink);
       background-image:
-        radial-gradient(ellipse at 10% 0%, rgba(196,119,138,0.08) 0, transparent 50%),
-        radial-gradient(ellipse at 90% 100%, rgba(107,30,52,0.06) 0, transparent 50%);
+        radial-gradient(ellipse at 10% 0%, rgba(212,175,55,0.08) 0, transparent 50%),
+        radial-gradient(ellipse at 90% 100%, rgba(23,191,174,0.06) 0, transparent 50%);
       background-attachment: fixed;
     }
 
@@ -90,7 +90,7 @@
 
     /* ===== HEADER ===== */
     .header-wrap {
-      background: rgba(250,246,240,0.97);
+      background: rgba(11,15,15,0.97);
       border-bottom: 1px solid var(--line);
       padding: 18px 16px;
       text-align: center;
@@ -143,7 +143,7 @@
       background: var(--burgundy);
       color: #fff;
       border-color: var(--burgundy);
-      box-shadow: 0 6px 24px rgba(107,30,52,0.25);
+      box-shadow: 0 6px 24px rgba(23,191,174,0.25);
     }
 
     /* ===== CONTAINERS ===== */
@@ -187,12 +187,12 @@
     input:focus, select:focus {
       outline: none;
       border-color: var(--burgundy);
-      box-shadow: 0 0 0 3px rgba(107,30,52,0.08);
-      background: #fff;
+      box-shadow: 0 0 0 3px rgba(23,191,174,0.08);
+      background: var(--cream3);
     }
 
     select option {
-      background: #fff;
+      background: var(--cream2);
       color: var(--ink);
     }
 
@@ -211,11 +211,11 @@
       letter-spacing: 1.5px;
       text-transform: uppercase;
       transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
-      box-shadow: 0 6px 24px rgba(107,30,52,0.25);
+      box-shadow: 0 6px 24px rgba(23,191,174,0.25);
     }
 
     button:hover {
-      box-shadow: 0 10px 32px rgba(107,30,52,0.35);
+      box-shadow: 0 10px 32px rgba(23,191,174,0.35);
       transform: translateY(-2px);
     }
 
@@ -294,7 +294,7 @@
     .gallery-item-overlay {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(107,30,52,0.9);
+      background: rgba(23,191,174,0.9);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -326,7 +326,7 @@
       position: absolute;
       top: 8px;
       left: 8px;
-      background: rgba(107,30,52,0.9);
+      background: rgba(23,191,174,0.9);
       color: var(--gold);
       padding: 6px 10px;
       border-radius: 6px;
@@ -377,14 +377,14 @@
       border-radius: 16px;
       padding: 18px;
       margin-bottom: 16px;
-      background: #fff;
+      background: var(--cream2);
       box-shadow: 0 2px 12px var(--shadow);
       border-left: 4px solid var(--burgundy);
       transition: all 0.3s;
     }
 
     .reservation-card:hover {
-      box-shadow: 0 6px 20px rgba(107,30,52,0.15);
+      box-shadow: 0 6px 20px rgba(23,191,174,0.15);
       transform: translateY(-2px);
     }
 
@@ -394,7 +394,7 @@
     }
 
     @keyframes highlight-pulse {
-      0%, 100% { background: #fff; }
+      0%, 100% { background: var(--cream2); }
       50% { background: var(--goldfaint); }
     }
 
@@ -494,7 +494,7 @@
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(26,16,24,0.7);
+      background: rgba(0,0,0,0.7);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
       justify-content: center;
@@ -504,14 +504,14 @@
     }
 
     .modal-box {
-      background: #fff;
+      background: var(--cream2);
       padding: 32px 28px;
       border-radius: 20px;
       max-width: 440px;
       width: 100%;
       max-height: 80vh;
       overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(107,30,52,0.3);
+      box-shadow: 0 20px 60px rgba(23,191,174,0.3);
       border: 1px solid var(--parchment);
       border-top: 4px solid var(--burgundy);
     }
@@ -578,7 +578,7 @@
       z-index: 3000;
       opacity: 0;
       transition: opacity 0.5s, bottom 0.5s;
-      box-shadow: 0 8px 32px rgba(107,30,52,0.4);
+      box-shadow: 0 8px 32px rgba(23,191,174,0.4);
     }
 
     /* Page sections */
@@ -699,7 +699,7 @@
 
     <!-- Header -->
     <div class="header-wrap">
-      <h1>NATASHA BEAUTY ADMIN</h1>
+      <h1>UNIQUE CREATIONZ ADMIN</h1>
     </div>
 
     <!-- Top Menu -->
@@ -727,17 +727,9 @@
         <div style="margin-bottom:20px;">
           <label style="display:block; margin-bottom:8px; font-weight:700; color:var(--burgundy); font-size:13px;">Category for Upload:</label>
           <select id="categoryInput" style="margin-bottom:0;">
-            <option value="Braids">Braids</option>
-            <option value="Twists">Twists</option>
-            <option value="Locs">Locs</option>
-            <option value="Cornrows">Cornrows</option>
-            <option value="Weaves">Weaves</option>
-            <option value="Quick Weave">Quick Weave</option>
-            <option value="Sew In">Sew In</option>
-            <option value="Ponytails">Ponytails</option>
-            <option value="Natural Hair">Natural Hair</option>
-            <option value="Wigs">Wigs</option>
-            <option value="Other">Other</option>
+            <option value="Hairdressing">Hairdressing</option>
+            <option value="Lashes">Lashes</option>
+            <option value="Nails">Nails</option>
           </select>
         </div>
 
@@ -831,7 +823,7 @@
         </div>
 
         <!-- List of Unavailable Dates -->
-        <div style="background:#fff; border:1px solid var(--parchment); border-radius:16px; padding:20px;">
+        <div style="background:var(--cream2); border:1px solid var(--parchment); border-radius:16px; padding:20px;">
           <h3 style="font-family:'Playfair Display',serif; color:var(--burgundy); margin-top:0; font-size:18px;">Blocked Dates</h3>
           <ul id="unavailableDatesList"></ul>
         </div>
@@ -839,7 +831,7 @@
     </div>
 
     <!-- ===== DEPOSIT MODAL ===== -->
-    <div id="depositModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(26,16,24,0.7); backdrop-filter:blur(6px); justify-content:center; align-items:center; z-index:2000;">
+    <div id="depositModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); backdrop-filter:blur(6px); justify-content:center; align-items:center; z-index:2000;">
       <div class="modal-box">
         <h3 class="modal-title">Update Deposit Status</h3>
         <div class="radio-group">
@@ -860,7 +852,7 @@
     </div>
 
     <!-- ===== STATUS MODAL ===== -->
-    <div id="statusModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(26,16,24,0.7); backdrop-filter:blur(6px); justify-content:center; align-items:center; z-index:2000;">
+    <div id="statusModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); backdrop-filter:blur(6px); justify-content:center; align-items:center; z-index:2000;">
       <div class="modal-box">
         <h3 class="modal-title">Update Booking Status</h3>
         <div class="radio-group">
@@ -881,7 +873,7 @@
     </div>
 
     <!-- ===== CONFLICT MODAL ===== -->
-    <div id="conflictModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(26,16,24,0.7); backdrop-filter:blur(6px); justify-content:center; align-items:center; z-index:2000; padding:20px;">
+    <div id="conflictModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); backdrop-filter:blur(6px); justify-content:center; align-items:center; z-index:2000; padding:20px;">
       <div class="modal-box">
         <h3 class="modal-title">⚠️ Booking Conflicts Detected</h3>
         <p style="text-align:center; color:var(--muted); margin-bottom:20px; font-size:13px;">
@@ -893,7 +885,7 @@
     </div>
 
     <!-- ===== ADMIN CANCEL MODAL ===== -->
-    <div id="adminCancelModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(26,16,24,0.7); backdrop-filter:blur(6px); justify-content:center; align-items:center; z-index:2000;">
+    <div id="adminCancelModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); backdrop-filter:blur(6px); justify-content:center; align-items:center; z-index:2000;">
       <div class="modal-box" style="max-width:360px; text-align:center;">
         <input type="hidden" id="adminCancelBookingId"/>
         <div style="font-size:48px; margin-bottom:12px;">⚠️</div>
