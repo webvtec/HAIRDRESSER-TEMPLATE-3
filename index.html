@@ -76,79 +76,6 @@ body {
   position: relative;
 }
 
-/* Ambient glowing background shapes — fixed to viewport so they always
-   show through the page's side gutters and top zone on every tab */
-.bg-glow {
-  position: fixed;
-  z-index: 0;
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.bg-glow-1 {
-  top: -160px;
-  left: -160px;
-  width: 480px;
-  height: 480px;
-  background: radial-gradient(circle, rgba(196,119,138,0.55) 0%, rgba(196,119,138,0.22) 45%, rgba(196,119,138,0) 72%);
-  filter: blur(45px);
-  animation: glowFloat1 14s ease-in-out infinite;
-}
-
-.bg-glow-2 {
-  bottom: -180px;
-  right: -160px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(212,169,62,0.55) 0%, rgba(212,169,62,0.2) 45%, rgba(212,169,62,0) 72%);
-  filter: blur(45px);
-  animation: glowFloat2 16s ease-in-out infinite;
-}
-
-.bg-glow-3 {
-  top: 42%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-  width: 440px;
-  height: 440px;
-  background: radial-gradient(circle, rgba(107,30,52,0.28) 0%, rgba(107,30,52,0.1) 45%, rgba(107,30,52,0) 72%);
-  filter: blur(60px);
-  animation: glowFloat3 20s ease-in-out infinite;
-}
-
-.bg-glow-4 {
-  top: 12%;
-  right: -140px;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(196,119,138,0.4) 0%, rgba(196,119,138,0.15) 45%, rgba(196,119,138,0) 72%);
-  filter: blur(40px);
-  animation: glowFloat2 18s ease-in-out infinite;
-}
-
-.bg-glow-5 {
-  bottom: 10%;
-  left: -140px;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(212,169,62,0.4) 0%, rgba(212,169,62,0.15) 45%, rgba(212,169,62,0) 72%);
-  filter: blur(40px);
-  animation: glowFloat1 17s ease-in-out infinite;
-}
-
-@keyframes glowFloat1 {
-  0%, 100% { transform: translate(0,0) scale(1); }
-  50% { transform: translate(30px, 40px) scale(1.1); }
-}
-@keyframes glowFloat2 {
-  0%, 100% { transform: translate(0,0) scale(1); }
-  50% { transform: translate(-30px, -30px) scale(1.12); }
-}
-@keyframes glowFloat3 {
-  0%, 100% { transform: translate(-50%,-50%) scale(1); opacity: 0.8; }
-  50% { transform: translate(-50%,-55%) scale(1.15); opacity: 1; }
-}
-
 /* ==============================
    FLOATING PILL NAVIGATION
    ============================== */
@@ -1000,12 +927,6 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.3); }
 </style>
 </head>
 <body>
-<div class="bg-glow bg-glow-1"></div>
-<div class="bg-glow bg-glow-2"></div>
-<div class="bg-glow bg-glow-3"></div>
-<div class="bg-glow bg-glow-4"></div>
-<div class="bg-glow bg-glow-5"></div>
-
 
 <!-- FLOATING PILL NAV -->
 <div class="pill-nav-wrap">
